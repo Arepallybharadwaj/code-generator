@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style> 
+    button{
+        background-color: red;
+        border-radius: 20px;
+
+    }
+    .display{
+        width: 1005;
+        margin-bottom: 20px;
+        background: #fff;
+        color: #333;
+        display: flex;
+        align-items: center;
+        /* justify-content: space */
+        padding: 26px 20px;
+        border-radius: 5px;
+    }
+    .display input{
+        border: 0;
+        outline: 0;
+        font-size: 24px;
+    }
+    .container button{
+        border: 0;
+        outline: 0;
+        background:red;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+    .display img{
+        cursor: pointer;
+    }
+    .container button img{
+        width: 20px;
+        margin-right: 10px;
+    }
+</style>
+<body>
+
+   <div class="container">
+    <h1>genrate a<span>random password</span></h1>
+    <div class="display" >
+        <input type="text" id="password" placeholder="password" style="height: 30px;">
+        <img src="copy.png" style="height: 30px;" onclick="copypassword()">
+    </div>
+    <button onclick="createpassword()"> <img src="generate.png" style="height: 40px;" >generate password</button >
+       
+   </div>
+
+<script>
+   let passbox = document.getElementById("password");
+   const length = 12;
+const upperCase="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const lowerCase="abcdefghijklmnopqrstuvwxyz";
+const number="0123456789";
+const symbol="#$%^&*()--_+[]<>/-=";
+
+const allChars = upperCase+lowerCase+number+symbol;
+
+
+function createpassword(){
+    let password = "";
+    password += upperCase[Math.floor(Math.random() * upperCase.length)];
+    password += lowerCase[Math.floor(Math.random() * lowerCase.length)];
+    password += number[Math.floor(Math.random() * number.length)];
+    password += symbol[Math.floor(Math.random() * symbol.length)];  
+    
+    while(length > password.length){
+        password += allChars[Math.floor(Math.random() * allChars.length)];
+   
+    }
+    passbox.value=password;
+}
+function copypassword(){
+    passbox.select();
+    document.execCommand("copy")
+
+}
+
+</script>
+</body>
+</html>
